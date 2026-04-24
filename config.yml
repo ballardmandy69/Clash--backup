@@ -15,7 +15,7 @@ dns:
     fallback: ['https://doh.dns.sb/dns-query', 'https://dns.cloudflare.com/dns-query', 'https://dns.twnic.tw/dns-query', 'tls://8.8.4.4:853']
     fallback-filter: { geoip: true, ipcidr: [240.0.0.0/4, 0.0.0.0/32] }
 proxies:
-    - { name: '🇭🇰 香港 01', type: anytls, server: 13.213.1.146, port: 12741, password: 'c676a36b-1f2a-4d34-8d7e-73dcc142153f', udp: true, client-fingerprint: chrome, alpn: [http/1.1, h2], sni: officecdn.microsoft.com,  fragment: { packets: tlshello, length: '10-20', interval: '1-5' },skip-cert-verify: true }  
+    - { name: '🇭🇰 香港 01 - AnyTLS', type: anytls, server: 13.213.1.146, port: 12741, password: 'c676a36b-1f2a-4d34-8d7e-73dcc142153f', udp: true, client-fingerprint: chrome, alpn: [http/1.1, h2], sni: officecdn.microsoft.com, skip-cert-verify: true, idle-session-check-interval: 30, idle-session-timeout: 120, min-idle-session: 1 }
 proxy-groups:
     - { name: V2Board, type: select, proxies: [自动选择, 故障转移, 临时节点] }
     - { name: 自动选择, type: url-test, proxies: [临时节点], url: 'http://www.gstatic.com/generate_204', interval: 86400 }
